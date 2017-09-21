@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -51,3 +51,15 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('albums', () => albums);
+*/
+
+import React from 'react';
+import {Text, AppRegistry} from 'react-native';
+
+const App = () => {
+  return(
+    <Text>Some Text</Text>
+  );
+}
+
+AppRegistry.registerComponent('albums', ()=> App)

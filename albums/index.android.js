@@ -55,7 +55,7 @@ AppRegistry.registerComponent('albums', () => albums);
 
 import React from 'react';
 import {AppRegistry} from 'react-native';
-import Header from './src/modules/header';
+import Header from './src/modules/Header';
 
 const App = () => {
   return(

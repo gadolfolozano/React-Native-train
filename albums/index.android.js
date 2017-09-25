@@ -59,7 +59,7 @@ import Header from './src/modules/header';
 
 const App = () => {
   return(
-    <Header />
+    <Header headerText={'Albums!'}/>
   );
 };
 

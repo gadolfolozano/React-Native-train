@@ -1,13 +1,13 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const Header = () => {
+const Header = (props) => {
 
 	const { textStyle, viewStyle } = styles;
 
 	return (
 		<View style={viewStyle}>
-			<Text style={textStyle}>Albums!</Text>
+			<Text style={textStyle}>{props.headerText}</Text>
 		</View>
 	);
 };
@@ -24,7 +24,7 @@ const styles = {
 		elevation: 2,
 		position: 'relative'
 	},
-	
+
 	textStyle: {
 		fontSize: 30
 	}

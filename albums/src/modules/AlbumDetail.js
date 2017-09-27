@@ -1,23 +1,24 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
-import Card from './Card'; 
+import {View, Text, Image, Linking} from 'react-native';
+import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button'
 
 const AlbumDetail = ({album}) => {
 
-	const { 
-		title, 
-		artist, 
+	const {
+		title,
+		artist,
 		image,
 		thumbnail_image,
-		thumbnailContainerStyle
+		url
 	} = album;
-	const { 
+	const {
 		headerContentStyle,
-		thumbnailStyle, 
+		thumbnailStyle,
 		headerTextStyle,
-		imageStyle 
+		imageStyle,
+		thumbnailContainerStyle
 	} = styles;
 
 	return (
@@ -32,20 +33,22 @@ const AlbumDetail = ({album}) => {
 				<View style = {headerContentStyle}>
 					<Text style = {headerTextStyle}>{title}</Text>
 					<Text>{artist}</Text>
-				</View>	
-			</CardSection>	
+				</View>
+			</CardSection>
 
 			<CardSection>
 				<Image
 					style = {imageStyle}
 					source = {{ uri: image }}
 				/>
-			</CardSection>	
+			</CardSection>
 
 			<CardSection>
-				<Button onPress = { () => console.log(title) }/>
-			</CardSection>	
-			
+				<Button onPress = { () => Linking.openURL(url) }>
+					Buy Now
+				</Button>
+			</CardSection>
+
 		</Card>
 	);
 };
@@ -68,7 +71,7 @@ const styles = {
 	thumbnailContainerStyle: {
 		justifyContent: 'center',
 		alignItems: 'center'
-	}, 
+	},
 	imageStyle: {
 		height: 300,
 		flex: 1,

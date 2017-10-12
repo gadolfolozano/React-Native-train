@@ -7,6 +7,7 @@ import {
   Input,
   Button
 } from './common';
+import { Text } from 'react-native';
 
 class LoginForm extends Component {
 
@@ -45,6 +46,10 @@ class LoginForm extends Component {
             value = {this.props.password} />
         </CardSection>
 
+        <Text style={styles.errorStyle}>
+          {this.props.error}
+        </Text>
+
         <CardSection>
           <Button onPress = {this.onButtonPress.bind(this)}>
             Login
@@ -55,10 +60,19 @@ class LoginForm extends Component {
   }
 }
 
+const styles = {
+  errorStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
+
 const mapStateToProps = state => {
   return {
     email: state.auth.email,
-    password: state.auth.password
+    password: state.auth.password,
+    error: state.auth.error
   }
 }
 

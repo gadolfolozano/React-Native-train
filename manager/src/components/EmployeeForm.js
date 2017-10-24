@@ -11,7 +11,7 @@ import {
 class EmployeeForm extends Component {
 
   render () {
-
+    console.log("EmployeeForm render", this.props);
       return (
         <View>
           <CardSection>

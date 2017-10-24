@@ -6,7 +6,7 @@ import {
   CardSection,
   Button
 } from './common';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeSave } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
 class EmployeeEdit extends Component {
@@ -22,7 +22,7 @@ class EmployeeEdit extends Component {
   onButtonPress () {
     const { name, phone, shift } = this.props;
 
-    console.log("onButtonPress", name, phone, shift);
+    this.props.employeSave({ name, phone, shift, uid: this.props.employee.uid });
   }
 
   render () {
@@ -49,4 +49,4 @@ const mapStateToProps = (state) => {
   return {name, phone, shift};
 }
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeSave })(EmployeeEdit);

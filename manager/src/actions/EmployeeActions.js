@@ -47,7 +47,21 @@ export const employeSave = ({ name, phone, shift, uid }) => {
       .set({ name, phone, shift})
       .then(() => {
         dispatch({ type: EMPLOYEES_SAVE_SUCCESS });
-          Actions.pop();
+        Actions.pop();
+      }
+    );
+  };
+};
+
+export const employeDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .remove()
+      .then(() => {
+        //dispatch({ type: EMPLOYEES_SAVE_SUCCESS });
+        Actions.pop();
       }
     );
   };

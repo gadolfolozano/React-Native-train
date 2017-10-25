@@ -5,12 +5,14 @@ import Comunications from 'react-native-communications';
 import {
   Card,
   CardSection,
-  Button
+  Button,
+  Confirm
 } from './common';
-import { employeeUpdate, employeSave } from '../actions';
+import { employeeUpdate, employeSave, employeDelete } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
 class EmployeeEdit extends Component {
+  state = { showModal: false };
 
   componentWillMount() {
     console.log("componentWillMount", this.props);
@@ -18,6 +20,14 @@ class EmployeeEdit extends Component {
       console.log("each", prop, value);
       this.props.employeeUpdate({ prop, value });
     });
+  }
+
+  onAccept() {
+    this.props.employeDelete({ uid: this.props.employee.uid });
+  }
+
+  onDecline() {
+    this.setState({ showModal: false });
   }
 
   onButtonPress () {
@@ -51,6 +61,20 @@ class EmployeeEdit extends Component {
               Text Schedule
             </Button>
           </CardSection>
+
+          <CardSection>
+            <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+              Fire Employe
+            </Button>
+          </CardSection>
+
+          <Confirm
+            visible={this.state.showModal}
+            onAccept={this.onAccept.bind(this)}
+            onDecline={this.onDecline.bind(this)}
+          >
+            Are you sure you want to delete this?
+          </Confirm>
         </Card>
       );
   }
@@ -62,4 +86,4 @@ const mapStateToProps = (state) => {
   return {name, phone, shift};
 }
 
-export default connect(mapStateToProps, { employeeUpdate, employeSave })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeSave, employeDelete })(EmployeeEdit);
